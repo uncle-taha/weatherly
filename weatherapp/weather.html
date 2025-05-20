@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="weather.css" />
+    <link rel="stylesheet" href="/src/output.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar">
+      <div class="p-3">
+        <span
+          id="logo"
+          class="text-2xl font-semibold whitespace-nowrap text-white"
+          ><a href="weather.html"><u>zzokko</u></a></span
+        >
+        <a id="about" href="about.html">About</a>
+      </div>
+    </nav>
+    <!-- navbar end -->
+    <!-- search bar -->
+    <div id="searchBar">
+      <form class="weatherForm">
+        <input
+          type="text"
+          class="cityInput"
+          id="clearSearch"
+          placeholder="Please enter only city name"
+        />
+        <span
+          class="clear"
+          onclick="document.getElementById('clearSearch').value = ''"
+        ></span>
+        <button type="submit">
+          <svg
+            class="w-6 h-6 text-gray-800 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-width="2"
+              d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+            />
+          </svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- search bar end -->
+    <!-- clock -->
+    <div class="clock-container">
+      <!-- London Clock -->
+      <div class="clock-card">
+        <div class="clock-dial">
+          <div class="classicclock">
+            <div class="point"></div>
+            <!-- Hours -->
+            <div class="hour hour-1">1</div>
+            <div class="hour hour-2">2</div>
+            <div class="hour hour-3">3</div>
+            <div class="hour hour-4">4</div>
+            <div class="hour hour-5">5</div>
+            <div class="hour hour-6">6</div>
+            <div class="hour hour-7">7</div>
+            <div class="hour hour-8">8</div>
+            <div class="hour hour-9">9</div>
+            <div class="hour hour-10">10</div>
+            <div class="hour hour-11">11</div>
+            <div class="hour hour-12">12</div>
+            <div class="city-name">Seoul</div>
+            <!-- Clock Hands -->
+            <div class="minute-hand-wrapper" id="seoul-minute-hand">
+              <div class="minute-hand">
+                <div class="hand"></div>
+                <div class="arrow">v</div>
+              </div>
+            </div>
+            <div class="hour-hand-wrapper" id="seoul-hour-hand">
+              <div class="hour-hand">
+                <div class="hand"></div>
+                <div class="arrow">v</div>
+              </div>
+            </div>
+            <div class="second-hand-wrapper" id="seoul-second-hand">
+              <div class="second-hand">
+                <div class="hand"></div>
+              </div>
+            </div>
+          </div>
+          <!-- below clock -->
+          <div id="belowclock">
+            <div id="digitalclockSeoul" class="digitalclock">00:00:00</div>
+          </div>
+        </div>
+        <!-- digtal clock -->
+      </div>
+
+      <!-- New York Clock -->
+      <div class="clock-card">
+        <div class="clock-dial">
+          <div class="classicclock">
+            <div class="point"></div>
+            <!-- Hours -->
+            <div class="hour hour-1">1</div>
+            <div class="hour hour-2">2</div>
+            <div class="hour hour-3">3</div>
+            <div class="hour hour-4">4</div>
+            <div class="hour hour-5">5</div>
+            <div class="hour hour-6">6</div>
+            <div class="hour hour-7">7</div>
+            <div class="hour hour-8">8</div>
+            <div class="hour hour-9">9</div>
+            <div class="hour hour-10">10</div>
+            <div class="hour hour-11">11</div>
+            <div class="hour hour-12">12</div>
+            <div class="city-name">New York</div>
+            <!-- Clock Hands -->
+            <div class="minute-hand-wrapper" id="newyork-minute-hand">
+              <div class="minute-hand">
+                <div class="hand"></div>
+                <div class="arrow">v</div>
+              </div>
+            </div>
+            <div class="hour-hand-wrapper" id="newyork-hour-hand">
+              <div class="hour-hand">
+                <div class="hand"></div>
+                <div class="arrow">v</div>
+              </div>
+            </div>
+            <div class="second-hand-wrapper" id="newyork-second-hand">
+              <div class="second-hand">
+                <div class="hand"></div>
+              </div>
+            </div>
+          </div>
+          <!-- below clock -->
+          <div id="belowclock">
+            <div id="digitalclockNewYork" class="digitalclock">00:00:00</div>
+          </div>
+        </div>
+        <!-- digtal clock -->
+      </div>
+      <!-- Seoul -->
+      <div class="clock-card">
+        <div class="clock-dial">
+          <div class="classicclock">
+            <div class="point"></div>
+            <!-- Hours -->
+            <div class="hour hour-1">1</div>
+            <div class="hour hour-2">2</div>
+            <div class="hour hour-3">3</div>
+            <div class="hour hour-4">4</div>
+            <div class="hour hour-5">5</div>
+            <div class="hour hour-6">6</div>
+            <div class="hour hour-7">7</div>
+            <div class="hour hour-8">8</div>
+            <div class="hour hour-9">9</div>
+            <div class="hour hour-10">10</div>
+            <div class="hour hour-11">11</div>
+            <div class="hour hour-12">12</div>
+            <div class="city-name">London</div>
+            <!-- Clock Hands -->
+            <div class="minute-hand-wrapper" id="london-minute-hand">
+              <div class="minute-hand">
+                <div class="hand"></div>
+                <div class="arrow">v</div>
+              </div>
+            </div>
+            <div class="hour-hand-wrapper" id="london-hour-hand">
+              <div class="hour-hand">
+                <div class="hand"></div>
+                <div class="arrow">v</div>
+              </div>
+            </div>
+            <div class="second-hand-wrapper" id="london-second-hand">
+              <div class="second-hand">
+                <div class="hand"></div>
+              </div>
+            </div>
+          </div>
+          <!-- below clock -->
+          <div id="belowclock">
+            <div id="digitalclockLondon" class="digitalclock">00:00:00</div>
+          </div>
+        </div>
+        <!-- digtal clock -->
+      </div>
+      <!-- end soul -->
+
+      <!-- tashkent -->
+      <div class="clock-card">
+        <div class="clock-dial">
+          <div class="classicclock">
+            <div class="point"></div>
+            <!-- Hours -->
+            <div class="hour hour-1">1</div>
+            <div class="hour hour-2">2</div>
+            <div class="hour hour-3">3</div>
+            <div class="hour hour-4">4</div>
+            <div class="hour hour-5">5</div>
+            <div class="hour hour-6">6</div>
+            <div class="hour hour-7">7</div>
+            <div class="hour hour-8">8</div>
+            <div class="hour hour-9">9</div>
+            <div class="hour hour-10">10</div>
+            <div class="hour hour-11">11</div>
+            <div class="hour hour-12">12</div>
+            <div class="city-name">Tashkent</div>
+            <!-- Clock Hands -->
+            <div class="minute-hand-wrapper" id="tashkent-minute-hand">
+              <div class="minute-hand">
+                <div class="hand"></div>
+                <div class="arrow">v</div>
+              </div>
+            </div>
+            <div class="hour-hand-wrapper" id="tashkent-hour-hand">
+              <div class="hour-hand">
+                <div class="hand"></div>
+                <div class="arrow">v</div>
+              </div>
+            </div>
+            <div class="second-hand-wrapper" id="tashkent-second-hand">
+              <div class="second-hand">
+                <div class="hand"></div>
+              </div>
+            </div>
+          </div>
+          <!-- below clock -->
+          <div id="belowclock">
+            <div id="digitalclockTashkent" class="digitalclock">00:00:00</div>
+          </div>
+        </div>
+        <!-- digtal clock -->
+      </div>
+    </div>
+
+    <!-- clock end -->
+
+    <div class="cards" style="display: none"></div>
+
+    <footer class="footer">
+      <a
+        href="https://www.instagram.com/painauchocolat6?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+        ><img
+          src="/weatherapp/images/instagram.png"
+          alt="zzokko"
+          class="instaImg"
+        />
+        <span>follow zzokko</span></a
+      >
+    </footer>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBQgKMfTomWbDc7fWFT1ybiqJdA5GGVTq4&callback=initMap"
+      async
+      defer
+    ></script>
+
+    <script src="weather.js"></script>
+
+    <script>
+      function initMap() {
+        // Example initialization; update with actual data if needed
+        const map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 37.7749, lng: -122.4194 }, // Example coordinates
+          zoom: 8,
+        });
+      }
+    </script>
+  </body>
+</html>
