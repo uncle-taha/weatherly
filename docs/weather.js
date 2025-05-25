@@ -56,6 +56,7 @@ async function getWeatherData(city) {
   }
   return await response.json();
 }
+let timeZoneId = null;
 
 function displayWeatherInfo(data) {
   const {
@@ -85,7 +86,7 @@ function displayWeatherInfo(data) {
   const lastline1 = document.createElement("div");
   const lastline2 = document.createElement("div");
   const map1 = document.createElement("div");
-  const clockDiv = document.createElement("div");
+
   const clearCard = document.createElement("span");
   clearCard.textContent = "×";
   clearCard.classList.add("clearCard");
@@ -267,6 +268,7 @@ function displayWeatherInfo(data) {
   }
   createClockUI(cityN);
   fetchAndUpdateClock(latD, lonD);
+  console.log(cityN, latD, lonD);
 } //end function
 
 function getWeatherEmoji(weatherId) {
@@ -321,7 +323,7 @@ function analogClock(hour, minute, second, cityPrefix) {
   document.getElementById(cityPrefix + "-hour-hand").style.transform =
     "rotate(" + hourDegree + "deg)";
 }
-
+// index times
 function updateClock() {
   // Seoul time
   const seoulTime = new Date().toLocaleString("en-US", {

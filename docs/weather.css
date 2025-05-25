@@ -255,7 +255,7 @@ h1 {
   height: 150px;
   border: 7px solid #00818a;
   border-radius: 50%;
-  margin: 10px auto 10px 10px;
+  margin: 10px auto 30px 10px;
   position: relative;
 }
 .point {
@@ -468,6 +468,7 @@ h1 {
   background-color: #00818a;
   border-radius: 3px;
   padding: 0.5px;
+  margin-top: 15px;
 }
 #placedigitalclock {
   display: flex;
