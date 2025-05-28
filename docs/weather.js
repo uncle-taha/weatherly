@@ -156,22 +156,24 @@ function displayWeatherInfo(data) {
   async function getLocationData(latt, lonn) {
     const timestamp = Math.floor(Date.now() / 1000);
     const Googleurl = `https://maps.googleapis.com/maps/api/timezone/json?location=${latt},${lonn}&timestamp=${timestamp}&key=${googleMapsApi}`;
-    console.log(`url: ${Googleurl}`);
 
     try {
       const response = await fetch(Googleurl);
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
       const timeData = await response.json();
-      if (typeof timeData === "object" && timeData.timeZoneId) {
+
+      console.log("API Response:", timeData); // See what we get
+
+      // Check if the response is valid
+      if (timeData.status === "OK" && timeData.timeZoneId) {
         return timeData;
       } else {
-        throw new Error("Unexpected data structure from time zone API");
+        // If API fails, just use UTC
+        console.log("API failed, using UTC");
+        return { timeZoneId: "UTC" };
       }
     } catch (error) {
-      console.error("Error fetching data:", error);
-      throw error;
+      console.log("API error, using UTC");
+      return { timeZoneId: "UTC" };
     }
   }
 
@@ -198,6 +200,7 @@ function displayWeatherInfo(data) {
       <div class="hour hour-11">11</div>
       <div class="hour hour-12">12</div>
       <div class="city-name">${cityN || "Unknown City"}</div>
+
       <!-- Clock Hands -->
       <div class="minute-hand-wrapper" id="place-minute-hand">
         <div class="minute-hand" style="transform: rotate(deg);">
@@ -257,47 +260,74 @@ function displayWeatherInfo(data) {
       "rotate(" + hourDegree + "deg)";
   }
 
-  async function fetchAndUpdateClock(latD, lonD) {
+  async function fetchAndUpdateClock(lat, lon) {
     try {
-      const timeData = await getLocationData(latD, lonD);
-      timeZoneId = timeData.timeZoneId; // Use this for clock updates
-      clockInterval = setInterval(updatesClock, 1000); // Start updating the clock
+      const timeData = await getLocationData(lat, lon);
+      timeZoneId = timeData.timeZoneId;
+
+      // Clear old interval
+      if (clockInterval) {
+        clearInterval(clockInterval);
+      }
+
+      // Start clock
+      updatesClock();
+      clockInterval = setInterval(updatesClock, 1000);
     } catch (error) {
-      console.error("Error updating clock:", error);
+      console.log("Clock error, using UTC");
+      timeZoneId = "UTC";
+      updatesClock();
+      clockInterval = setInterval(updatesClock, 1000);
     }
   }
   createClockUI(cityN);
-  fetchAndUpdateClock(latD, lonD);
-  console.log(cityN, latD, lonD);
+  fetchAndUpdateClock(lat, lon);
+  console.log(cityN, lat, lon);
 } //end function
 
 function getWeatherEmoji(weatherId) {
   const weatherIcon = document.createElement("img");
+
+  // Add error handling
+  weatherIcon.onerror = function () {
+    console.error("Failed to load image:", this.src);
+    this.style.display = "none";
+  };
+
+  weatherIcon.onload = function () {
+    console.log("Successfully loaded image:", this.src);
+  };
+
   switch (true) {
     case weatherId >= 200 && weatherId < 300:
-      weatherIcon.src = "./images/thunderstorms.svg";
+      weatherIcon.src = "images/thunderstorms.gif"; // Remove "docs/" prefix
       break;
     case weatherId >= 300 && weatherId < 400:
-      weatherIcon.src = "./images/dizzle.svg";
+      weatherIcon.src = "images/rain.gif";
       break;
     case weatherId >= 500 && weatherId < 600:
-      weatherIcon.src = "./images/rain.svg";
+      weatherIcon.src = "images/drizzle.gif";
       break;
     case weatherId >= 600 && weatherId < 700:
-      weatherIcon.src = "./images/snow.svg";
+      weatherIcon.src = "images/snow.gif";
       break;
     case weatherId >= 700 && weatherId < 800:
-      weatherIcon.src = "./images/fog.svg";
+      weatherIcon.src = "images/fog.gif";
       break;
     case weatherId === 800:
-      weatherIcon.src = "./images/sunny.svg";
+      weatherIcon.src = "images/sunny.svg";
       break;
     case weatherId >= 801 && weatherId < 810:
-      weatherIcon.src = "./images/cloudy.svg";
+      weatherIcon.src = "images/cloudy.png";
       break;
     default:
-      img.src = "path_to_default_image.png";
+      weatherIcon.src = "images/default.jpg";
   }
+
+  weatherIcon.style.width = "50px";
+  weatherIcon.style.height = "50px";
+  weatherIcon.alt = "Weather icon";
+
   return weatherIcon;
 }
 
