@@ -324,8 +324,8 @@ function getWeatherEmoji(weatherId) {
       weatherIcon.src = "images/default.jpg";
   }
 
-  weatherIcon.style.width = "50px";
-  weatherIcon.style.height = "50px";
+  weatherIcon.style.width = "150px";
+  weatherIcon.style.height = "150px";
   weatherIcon.alt = "Weather icon";
 
   return weatherIcon;
